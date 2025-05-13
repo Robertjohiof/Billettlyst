@@ -12,8 +12,8 @@ function App() {
   const [selectedClasses, setSelectedClasses] = useState([]);
   const [wishlist, setWishlist] = useState(JSON.parse(localStorage.getItem("wishlist")) || []);
   
-  //const apiKey = "REMOVED_TICKETMASTER_KEY";
-  const apiKey = "REMOVED_TICKETMASTER_KEY"
+  const apiKey = "REMOVED_TICKETMASTER_KEY";
+  //const apiKey = "REMOVED_TICKETMASTER_KEY"
   const classification = "KZFzniwnSyZfZ7v7nJ,KZFzniwnSyZfZ7v7nE,KZFzniwnSyZfZ7v7na&locale"
   const locale = "no"
 
