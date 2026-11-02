@@ -49,8 +49,9 @@ export const fetchAttractionsById = async (attractionsId) => {
     let apiresponse = null;
     await fetch(`${BASE_URL}/${API_VERSION}/events/?id=${eventIds}&locale=*`)
     .then((response) => response.json())
-    .then((data) => apiresponse = data._embedded.events);
-    return apiresponse;
+    .then((data) => apiresponse = data._embedded?.events);
+    // Expired events disappear from Ticketmaster, so an empty result must not crash the page
+    return apiresponse || [];
 }
 
   // Fetches attractions, events and venues from suggest endpoint
@@ -70,9 +71,9 @@ export const fetchAttractionsById = async (attractionsId) => {
     let apiresponse = null
     await fetch(`${BASE_URL}/${API_VERSION}/events?attractionId=${attracionId}&locale=*`)
     .then((response) => response.json())
-    .then((data) => apiresponse = data._embedded.events)
+    .then((data) => apiresponse = data._embedded?.events)
 
-    return apiresponse
+    return apiresponse || []
   }
 
 

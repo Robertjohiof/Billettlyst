@@ -30,7 +30,7 @@ export default function CategoryPage({ selectedClasses, wishlist, setWishlist })
       }
     }
 
-    const currentCat = selectedClasses?.find(cls => cls.id === slug).name;
+    const currentCat = selectedClasses?.find(cls => cls.id === slug)?.name;
 
     const setBgImg = (value) => {
       if("Sport" === value)
@@ -47,7 +47,7 @@ export default function CategoryPage({ selectedClasses, wishlist, setWishlist })
           <h1>Kategori: {currentCat}</h1>
 
           <Filter setLoadingResults={setLoadingResults} setFilterQuery={setFilterQuery}/>
-          <img src={`../src/assets/img/${setBgImg(currentCat)}`} alt="" />
+          <img src={new URL(`../assets/img/${setBgImg(currentCat)}`, import.meta.url).href} alt="" />
           <div className="bgDarkOverlay"></div>
         </section>
 

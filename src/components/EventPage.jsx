@@ -79,22 +79,22 @@ export default function EventPage({selectedFestivals}) {
                     <h3>Følg på sosiale medier:</h3>
                     {"homepage" in currentAttraction.externalLinks &&<li>
                         <a href={currentAttraction.externalLinks.homepage[0].url}>
-                            <img src="../src/assets/gfx/sym-link.svg" alt="Link button"/>
+                            <img src={new URL("../assets/gfx/sym-link.svg", import.meta.url).href} alt="Link button"/>
                         </a>
                     </li> }
                     {"instagram" in currentAttraction.externalLinks &&<li>
                         <a href={currentAttraction.externalLinks.instagram[0].url}>
-                            <img src="../src/assets/gfx/instagram.svg" alt="Instagram brand button"/>
+                            <img src={new URL("../assets/gfx/instagram.svg", import.meta.url).href} alt="Instagram brand button"/>
                         </a>
                     </li> }
                     {"facebook" in currentAttraction.externalLinks &&<li>
                         <a href={currentAttraction.externalLinks.facebook[0].url}>
-                            <img src="../src/assets/gfx/facebook.svg" alt="Facebook brand button"/>
+                            <img src={new URL("../assets/gfx/facebook.svg", import.meta.url).href} alt="Facebook brand button"/>
                         </a>
                     </li> }
                     {"spotify" in currentAttraction.externalLinks &&<li>
                         <a href={currentAttraction.externalLinks.spotify[0].url}>
-                            <img src="../src/assets/gfx/spotify.svg" alt="Spotify brand button"/>
+                            <img src={new URL("../assets/gfx/spotify.svg", import.meta.url).href} alt="Spotify brand button"/>
                         </a>
                     </li> }
                 </ul>

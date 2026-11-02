@@ -33,20 +33,20 @@ export default function EventCard({ event, wishlist, setWishlist, linkToDetails 
   const content = (
     <>
       <img src= {loadEventImg(event, 300, 800)} alt={`${event.name} banner`}/>
-      {wishlist && <span tabIndex="0" className="favouriteButton" onClick={() => handleOnClick(id, event.type)}><img src={`../src/assets/gfx/${isWishlisted(id) ? "heartSolid" : "heartOutline"}.svg`} alt=""/></span> }
+      {wishlist && <span tabIndex="0" className="favouriteButton" onClick={() => handleOnClick(id, event.type)}><img src={new URL(`../assets/gfx/${isWishlisted(id) ? "heartSolid" : "heartOutline"}.svg`, import.meta.url).href} alt=""/></span> }
       
       <section className="evenCardInner">
         <h3>{event.name}</h3>
 
         {venue && <p className="eventDetail">
-          <img src="../src/assets/gfx/markerOutline.svg" alt="" />
+          <img src={new URL("../assets/gfx/markerOutline.svg", import.meta.url).href} alt="" />
           {event.type === "event" ? <span className="bold">{venue?.name}, </span>: ""}
           <span>{venue?.city?.name}</span>
           </p>
         }
 
         {date && <p className="eventDetail">
-          <img src="../src/assets/gfx/calendarOutline.svg" alt="" />
+          <img src={new URL("../assets/gfx/calendarOutline.svg", import.meta.url).href} alt="" />
           <span>{formatDateNO(date)}</span>
           </p>
         }
