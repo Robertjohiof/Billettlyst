@@ -5,9 +5,9 @@ import {schemaTypes} from './schemaTypes'
 
 export default defineConfig({
   name: 'default',
-  title: 'exambackend',
+  title: 'Billettlyst',
 
-  projectId: '3yo9k4vo',
+  projectId: 'zpqcgvdr',
   dataset: 'production',
 
   plugins: [structureTool(), visionTool()],
