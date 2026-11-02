@@ -1,14 +1,13 @@
-export const BASE_URL = "https://app.ticketmaster.com/discovery";
+// Requests go through our own /api/ticketmaster proxy, which adds the API key on the server
+export const BASE_URL = "/api/ticketmaster";
 export const API_VERSION = "v2";
-export const API_KEY = "REMOVED_TICKETMASTER_KEY";
-//export const API_KEY = "REMOVED_TICKETMASTER_KEY";
 
 // Fetches multiple classifications based on IDS
 // param: String Ids separated with comma (in same string)
 export const fetchSelectedClassifications = async (classificationIDs) => {
   let apiresponse = null;
 
-  await fetch(`${BASE_URL}/${API_VERSION}/classifications?apikey=${API_KEY}&id=${classificationIDs}&locale=no`)
+  await fetch(`${BASE_URL}/${API_VERSION}/classifications?id=${classificationIDs}&locale=no`)
     .then((response) => response.json())
     .then((data) => apiresponse = data._embedded.classifications)
   return apiresponse || [];
@@ -18,7 +17,7 @@ export const fetchSelectedClassifications = async (classificationIDs) => {
 // param: String Ids separated with comma (in same string)
 export const fetchAttractionsById = async (attractionsId) => {
     let apiresponse = null;
-    await fetch(`${BASE_URL}/${API_VERSION}/attractions?apikey=${API_KEY}&id=${attractionsId}&locale=*`)
+    await fetch(`${BASE_URL}/${API_VERSION}/attractions?id=${attractionsId}&locale=*`)
       .then((response) => response.json())
       .then((data) => apiresponse = data._embedded?.attractions); 
     return apiresponse || []; 
@@ -28,7 +27,7 @@ export const fetchAttractionsById = async (attractionsId) => {
   // param: string id
   export const fetchSingleAttractionById = async (attracionId) => {
     let apiresponse = null;
-    await fetch(`${BASE_URL}/${API_VERSION}/attractions/${attracionId}?apikey=${API_KEY}&locale=*`)
+    await fetch(`${BASE_URL}/${API_VERSION}/attractions/${attracionId}?locale=*`)
     .then((response) => response.json())
     .then((data) => apiresponse = data);
     return apiresponse;
@@ -38,7 +37,7 @@ export const fetchAttractionsById = async (attractionsId) => {
   // param: string id
   export const fetchSingleEventsById = async (eventId) => {
     let apiresponse = null;
-    await fetch(`${BASE_URL}/${API_VERSION}/events/${eventId}?apikey=${API_KEY}&locale=*`)
+    await fetch(`${BASE_URL}/${API_VERSION}/events/${eventId}?locale=*`)
     .then((response) => response.json())
     .then((data) => apiresponse = data);
     return apiresponse;
@@ -48,7 +47,7 @@ export const fetchAttractionsById = async (attractionsId) => {
   // param: string ids, separated by comma in the same string.
   export const fetchMultipleEventsById = async (eventIds) => {
     let apiresponse = null;
-    await fetch(`${BASE_URL}/${API_VERSION}/events/?apikey=${API_KEY}&id=${eventIds}&locale=*`)
+    await fetch(`${BASE_URL}/${API_VERSION}/events/?id=${eventIds}&locale=*`)
     .then((response) => response.json())
     .then((data) => apiresponse = data._embedded.events);
     return apiresponse;
@@ -58,7 +57,7 @@ export const fetchAttractionsById = async (attractionsId) => {
   // param: string of parameters such as segmentId, countryCode, geoPoint, keyword
   export const fetchSuggestions = async (catFilter) => {
     let apiresponse = null;
-    await fetch(`${BASE_URL}/${API_VERSION}/suggest?apikey=${API_KEY}&locale=*${catFilter}&resource=events,venues`)
+    await fetch(`${BASE_URL}/${API_VERSION}/suggest?locale=*${catFilter}&resource=events,venues`)
     .then((response) => response.json())
     .then((data) => apiresponse = data._embedded)
     
@@ -69,7 +68,7 @@ export const fetchAttractionsById = async (attractionsId) => {
   // param: string, attraction ID to fetch events from
   export const fetchEventSearchInfo = async (attracionId) => {
     let apiresponse = null
-    await fetch(`${BASE_URL}/${API_VERSION}/events?apikey=${API_KEY}&attractionId=${attracionId}&locale=*`)
+    await fetch(`${BASE_URL}/${API_VERSION}/events?attractionId=${attracionId}&locale=*`)
     .then((response) => response.json())
     .then((data) => apiresponse = data._embedded.events)
 
@@ -87,7 +86,7 @@ export const fetchAttractionsById = async (attractionsId) => {
 
     try {
       const response = await fetch(
-        `${BASE_URL}/${API_VERSION}/events/${eventId}.json?apikey=${API_KEY}&locale=*`
+        `${BASE_URL}/${API_VERSION}/events/${eventId}.json?locale=*`
       );
 
       if (!response.ok) {
@@ -107,7 +106,7 @@ export const fetchAttractionsById = async (attractionsId) => {
 // param: string, name of city to fetch related events
 export const fetchTenEventsByCity = async(city_name)=> {
   let apiresponse = null
-  await fetch(`${BASE_URL}/${API_VERSION}/events?apikey=${API_KEY}&locale=*&size=10&city=${city_name}`)
+  await fetch(`${BASE_URL}/${API_VERSION}/events?locale=*&size=10&city=${city_name}`)
   .then((response) => response.json())
   .then((data)=> apiresponse = data._embedded.events)
   .catch((error) => console.error("Feil ved henting av byer", error))
@@ -115,8 +114,6 @@ export const fetchTenEventsByCity = async(city_name)=> {
   return apiresponse
 }
 
-//${BASE_URL}/${API_VERSION}/events?apikey=${API_KEY}&attractionId=${attracionId}&locale=*
-//https://app.ticketmaster.com/discovery/v2/events?apikey=REMOVED_TICKETMASTER_KEY&attractionId=K8vZ917oWOV,K8vZ917K7fV,K8vZ917bJC7,K8vZ917_YJf&locale=*
 
 
 
